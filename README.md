@@ -26,3 +26,9 @@ The plugin is controlled by the URL parameters.
 * `code=` You can initiate your plugin with a code snipper.
 * **Example**: `https://sirvan3tr.github.io/RemNote-Interactive-Code/?lang=python&code=print(%22hello%22)`
     * This uses python and initiates the editor wit a print() statement.
+
+## RemNote API
+You can access the RemNote API (v0) through the editors.
+Here is a demo of how to use it.
+
+<img src="demo_api.gif" alt="API Access Demo" />
