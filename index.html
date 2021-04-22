@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="codemirror.min.css" />
     <!-- Manually caching in localStorage -->
     <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/basket.js/0.5.2/basket.full.min.js" integrity="sha512-6zEEWFlGEMUXoRnlFNXCh6LkFZ1QZZomR+Z3H+rqlyctGH5L1Bi24r6bYaagcn7qP7uK/YeeIcIDQe8Fr39yeA==" crossorigin="anonymous"></script -->
-    <script src="/basket.full.min.js"></script>
+    <script src="basket.full.min.js"></script>
   </head>
   <body>
     <p>Select language in the URL, e.g. /?lang=python&code=print("hello")</p>
@@ -21,11 +21,11 @@
   </body>
   <script>
     function getLang() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang');
+      const urlParams = new URLSearchParams(window.location.search),
+            lang = urlParams.get('lang');
       if (lang==null) { return false; }
-      const codeParam = urlParams.get('code')
-      let code = codeParam ? codeParam : ""
+      const codeParam = urlParams.get('code'),
+            code = codeParam ? codeParam : "";
       document.body.innerHTML = '<div class="language-klipse-'+lang+'">'+code+'<div>';
       return true;
     }
