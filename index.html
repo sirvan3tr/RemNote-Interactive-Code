@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    Author: Sirvan Almasi @ Imperial College London
+    Date: 2021 Apr 22
+    Version: 0.1
+-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Klipse Code Editor for RemNote</title>
+    <!-- link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css" -->
+    <link rel="stylesheet" type="text/css" href="codemirror.min.css" />
+    <!-- Manually caching in localStorage -->
+    <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/basket.js/0.5.2/basket.full.min.js" integrity="sha512-6zEEWFlGEMUXoRnlFNXCh6LkFZ1QZZomR+Z3H+rqlyctGH5L1Bi24r6bYaagcn7qP7uK/YeeIcIDQe8Fr39yeA==" crossorigin="anonymous"></script -->
+    <script src="/basket.full.min.js"></script>
+  </head>
+  <body>
+    <p>Select language in the URL, e.g. /?lang=python&code=print("hello")</p>
+    See the source code or <a href="https://github.com/viebel/klipse">https://github.com/viebel/klipse</a> for more info.
+  </body>
+  <script>
+    function getLang() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang');
+      if (lang==null) { return false; }
+      const codeParam = urlParams.get('code')
+      let code = codeParam ? codeParam : ""
+      document.body.innerHTML = '<div class="language-klipse-'+lang+'">'+code+'<div>';
+      return true;
+    }
+
+    if (getLang()) {
+        window.klipse_settings = {
+            selector_eval_js: '.language-klipse-js', // selector for JavaScript evaluation snippets
+            selector_eval_ruby: '.language-klipse-ruby', // selector for Ruby evaluation snippets
+            selector_lua: '.language-klipse-lua', // selector for lua evaluation snippets
+            selector_es2017: '.language-klipse-es2017', // selector for EcmaScript 2017 evaluation snippets
+            selector_jsx: '.language-klipse-jsx', // selector for JSX evaluation snippets
+            selector_transpile_jsx: '.language-transpile-jsx', // selector for JSX transpilation snippets
+            selector_render_jsx: '.language-render-jsx', // selector for JSX rendering snippets
+            selector_react: '.language-react', // selector for React snippets
+            selector_eval_php: '.language-klipse-php', // selector for PHP evaluation snippets
+            selector_eval_markdown: '.language-klipse-markdown', // selector for Markdown transpilation snippets
+            selector_render_hiccup: '.render-hiccup', // selector for Hiccup rendering snippets
+            selector_transpile_hiccup: '.transpile-hiccup', // selector for Hiccup transpiling snippets
+            selector_eval_lambdaway: '.language-klipse-lambdaway', // selector for lambdaway transpilation snippets
+            selector_eval_python_client: '.language-klipse-python', // selector for Python evaluation snippets
+            selector_eval_cpp: '.language-klipse-cpp', // selector for cpp evaluation
+            selector_eval_html: '.language-klipse-html', // selector for Html evaluation snippets
+            selector: '.language-klipse',
+        };
+        // Manually adding the following scripts to localStorage for caching.
+        basket.require(
+            //{ url: 'https://cdn.jsdelivr.net/gh/remnoteio/remnote-api@0.0/RemNoteAPI.js' },
+            //{ url: 'https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js'}
+            { url: 'https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js'},
+            { url: 'RemNote0api.min.js'},
+        );
+    }
+</script>
+</html>
